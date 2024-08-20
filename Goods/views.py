@@ -35,6 +35,11 @@ def main(request):
 def user(request):
     return render(request, 'user/detail.html')
 
+def mycart_view(request):
+    # Your view logic here
+    return render(request, 'mycart.html')
+
+
 
 
 

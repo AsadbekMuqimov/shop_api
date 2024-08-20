@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from Goods.models import Product, Category
+from Goods.models import Product, Category, Cart, CartProduct
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
@@ -12,8 +12,8 @@ class ProductSerializer(ModelSerializer):
 class CategorySerializer(ModelSerializer):
     class Meta:
         model = Category
-        # fields = '__all__'
-        exclude = '__all__'
+        fields = '__all__'
+        
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,3 +24,15 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+    
+    
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = '__all__'
+        
+
+class CartProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartProduct
+        fields = ['id', 'productImg', 'product','cart', 'quantity', 'total_price']
